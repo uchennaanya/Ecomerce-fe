@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
+import { useState } from "react";
+import { sliderItems } from "../data";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  overflow: hidden;
+  ${mobile({ display: "none" })}
 `;
 
 const Arrow = styled.div`
@@ -24,15 +29,22 @@ const Arrow = styled.div`
   right: ${(props) => props.direction === "right" && "10px"};
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   width: 100%;
+  display: flex;
+  transition: all 1s ease;
+  transform: translateX(${(props) => props.sliderIndex * -100}vw);
 `;
+
 const ImgContainer = styled.div`
   flex: 1;
+  width: 100vw;
   height: 100%;
 `;
+
 const InfoContainer = styled.div`
   flex: 1;
   padding: 50px;
@@ -41,44 +53,66 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
   font-size: 70px;
 `;
+
 const Desc = styled.p`
   margin: 50px 0;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
 `;
-const Button = styled.button``;
+
+const Button = styled.button`
+  padding: 10px;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+`;
 
 const Image = styled.img`
-  height: 80%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 `;
 
 const Slide = styled.div`
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100vw !important;
   height: 100vh;
+  background: #${(props) => props.bg};
 `;
+
 const Slider = () => {
+  const [sliderIndex, setSliderIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSliderIndex(sliderIndex > 0 ? sliderIndex - 1 : 2);
+    } else {
+      setSliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0);
+    }
+  };
+
   return (
     <Container>
-      <Arrow direction="left">
-        <ArrowLeftOutlinedIcon></ArrowLeftOutlinedIcon>
+      <Arrow direction="left" onClick={() => handleClick("left")}>
+        <ArrowLeftOutlinedIcon />
       </Arrow>
-      <Wrapper>
-        <Slide>
-          <ImgContainer>
-            <Image src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>Summer Sale</Title>
-            <Desc>Sumer sales are always the best here!</Desc>
-            <Button>Buy Now</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper sliderIndex={sliderIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Button>Buy Now</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
-      <Arrow direction="right">
-        <ArrowRightOutlinedIcon></ArrowRightOutlinedIcon>
+      <Arrow direction="right" onClick={() => handleClick("right")}>
+        <ArrowRightOutlinedIcon />
       </Arrow>
     </Container>
   );

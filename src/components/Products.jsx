@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import { popularProducts } from "../data";
 import Product from "./Product";
+import axios from "axios";
+import res from "express/lib/response";
 
 const Container = styled.div`
   display: flex;
@@ -8,7 +11,12 @@ const Container = styled.div`
   justify-content: space-betwwen;
 `;
 
-const Products = () => {
+const Products = (cat, filters, sort) => {
+  const [products, setProducts] = useState([]);
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  console.log(sort, filters, cat);
   return (
     <Container>
       {popularProducts.map((item) => (

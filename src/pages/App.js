@@ -1,13 +1,12 @@
 
 import {
   BrowserRouter as Router,
-  Navigate,
   Route,
   Routes
 } from "react-router-dom";
 
-import Cart from './Cart';
-import Login from './Login';
+// import Cart from './Cart';
+// import Login from './Login';
 import ProductList from './ProductList';
 import Product from './Product';
 import Register from './Register';
@@ -17,7 +16,7 @@ import Home from './Home'
 
 
 function App() {
-  const user = true
+  // const user = true
   return (
     <Router>
       <Routes>

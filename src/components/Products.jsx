@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 import { popularProducts } from "../data";
 import Product from "./Product";
-import axios from "axios";
-import res from "express/lib/response";
+// import axios from "axios";
+// import res from "express/lib/response";
 
 const Container = styled.div`
   display: flex;
@@ -12,9 +12,9 @@ const Container = styled.div`
 `;
 
 const Products = (cat, filters, sort) => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  // const [filteredProducts, setFilteredProducts] = useState([]);
 
   console.log(sort, filters, cat);
   return (

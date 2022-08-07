@@ -1,12 +1,14 @@
 
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  Routes,
   Route,
-  Routes
+  useNavigate,
+  // Navigate
 } from "react-router-dom";
 
-// import Cart from './Cart';
-// import Login from './Login';
+import Cart from './Cart';
+import Login from './Login';
 import ProductList from './ProductList';
 import Product from './Product';
 import Register from './Register';
@@ -16,9 +18,10 @@ import Home from './Home'
 
 
 function App() {
-  // const user = true
+  const navigate = useNavigate
+  const user = true
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route>
         <Route index element={<Home />} /></Route>
@@ -26,13 +29,13 @@ function App() {
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/Register" element={<Register />} />
-        {/* <Route path="/Login" element={<Login />} />
-        <Route path="/Cart" element={<Cart />} /> */}
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* { user ? <Navigate to="/" />: <Login/>}
-      { user ? <Navigate to="/" />: <Register/>} */}
-    </Router>
+      {/* { user ? <Navigate to="/" />: <Login />} */}
+      {/* { user ? <Navigate to="/" />: <Register/>} */}
+    </BrowserRouter>
   );
 }
 

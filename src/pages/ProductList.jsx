@@ -79,12 +79,12 @@ const ProductList = () => {
             <Option disabled selected>
               Size
             </Option>
-            <Option>s</Option>
-            <Option>l</Option>
-            <Option>xl</Option>
-            <Option>xxl</Option>
-            <Option>m</Option>
-            <Option>xs</Option>
+            <Option>XS</Option>
+            <Option>S</Option>
+            <Option>M</Option>
+            <Option>L</Option>
+            <Option>XL</Option>
+            <Option>XXL</Option>
           </Select>
         </Filter>
         <Filter>

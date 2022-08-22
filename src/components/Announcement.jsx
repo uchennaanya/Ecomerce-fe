@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Anouncements = styled.div`
+const Announcements = styled.div`
   background: teal;
   height: 30px;
   color: #fff;
@@ -9,8 +9,8 @@ const Anouncements = styled.div`
   align-items: center;
 `;
 
-const Anouncement = () => {
-  return <Anouncements>All Anouncement goes in here </Anouncements>;
+const Announcement = () => {
+  return <Announcements>Upcoming promos and discounts... </Announcements>;
 };
 
-export default Anouncement;
+export default Announcement;

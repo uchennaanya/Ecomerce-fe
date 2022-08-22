@@ -5,7 +5,7 @@ import CategoryItem from "./CategoryItem";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
-  width: 100$;
+  width: 100%;
   display: flex;
   padding: 20px;
   justify-content: space-between;

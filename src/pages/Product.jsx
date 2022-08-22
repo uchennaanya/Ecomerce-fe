@@ -1,10 +1,13 @@
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
-import Anouncement from "../components/Anouncement";
+import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div``;
 
@@ -19,7 +22,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 50%;
   height: 90vh;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
@@ -27,6 +30,7 @@ const Image = styled.img`
 
 const InfoContainer = styled.div`
   padding: 0 50px;
+  width: 50%;
   ${mobile({ padding: "10px" })}
 `;
 
@@ -116,39 +120,51 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/findProduct/" + id);
+        setProduct(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+  console.log(product.color + "My Products");
   return (
     <Container>
       <Navbar />
-      <Anouncement />
+      <Announcement />
       <Wrapper>
         <ImageContainer>
-          <Image src="https://images.unsplash.com/flagged/photo-1574874897534-036671407eda?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461" />
+          <Image src={product.img} />
         </ImageContainer>
         <InfoContainer>
-          <Title>Sweater</Title>
-          <Desc>
-            This sweater is of high quality and is very much affordable no
-            hidden cahrges on delivery and purchase
-          </Desc>
-          <Price> $ 20</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price> ${product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {/* {product.color.map((c) => (
+                <FilterColor color={c} key={c} />
+              ))} */}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize>
-                <FilterSizeOption selected disabled>
+                <FilterSizeOption defaultChecked disabled>
                   Size
                 </FilterSizeOption>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+                {/* {product.size.map((s) => (
+                  <FilterSizeOption key={s}>s</FilterSizeOption>
+                ))} */}
               </FilterSize>
             </Filter>
           </FilterContainer>

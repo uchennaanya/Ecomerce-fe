@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
-import Anouncement from "../components/Anouncement";
+import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
@@ -67,7 +67,7 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 40%;
-  // height: 40vh;
+  height: 40vh;
   object-fit: cover;
   padding: 10px;
   ${mobile({ width: "50%" })}
@@ -158,11 +158,11 @@ const Cart = () => {
   return (
     <Container>
       <Navbar />
-      <Anouncement />
+      <Announcement />
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <TopButton type="black">CONTINEU SHOPPING</TopButton>
+          <TopButton type="black">CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping bag(2) </TopText>
             <TopText>Wish list (0)</TopText>

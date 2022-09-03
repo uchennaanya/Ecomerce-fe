@@ -40,7 +40,7 @@ const Form = styled.form`
   flex-wrap: wrap;
 `;
 
-const Aggrement = styled.p`
+const Agreement = styled.p`
   font-size: 12px;
   margin: 20px 0;
 `;
@@ -66,10 +66,10 @@ const Register = () => {
           <Input placeholder="Email" />
           <Input placeholder="Password" />
           <Input placeholder="Confirm password" />
-          <Aggrement>
+          <Agreement>
             By clicking this button you have agreed to our terms and conditions
             in accordance with the <b>PRIVACY POLICY</b>
-          </Aggrement>
+          </Agreement>
           <Button>CREATE</Button>
         </Form>
       </Wrapper>

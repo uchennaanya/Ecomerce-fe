@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { popularProducts } from "../data";
 import { useEffect, useState } from "react";
 import Product from "./Product";
 import axios from "axios";
@@ -10,8 +9,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Products = (cat, filters, sort) => {
-  console.log(cat, filters, sort);
+const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -58,8 +56,6 @@ const Products = (cat, filters, sort) => {
       );
     }
   }, [sort]);
-
-  console.log(filteredProducts);
 
   return (
     <Container>

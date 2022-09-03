@@ -4,6 +4,8 @@ import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStore
 import Badge from "@mui/material/Badge";
 import SearchIcon from "@mui/icons-material/Search";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
+import { Link } from "@mui/material";
 
 const Container = styled.div``;
 
@@ -68,6 +70,9 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
+
+  console.log(quantity);
   return (
     <Container>
       <Wrapper>
@@ -85,9 +90,11 @@ const Navbar = () => {
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={1} color="primary">
-              <LocalGroceryStoreOutlinedIcon color="action" />
-            </Badge>
+            <Link to="/cart">
+              <Badge badgeContent={quantity} color="primary">
+                <LocalGroceryStoreOutlinedIcon color="action" />
+              </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>
